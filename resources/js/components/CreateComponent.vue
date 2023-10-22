@@ -47,6 +47,7 @@ export default {
             this.age = null;
             this.job = null;
 
+            this.$parent.$refs.index.getPeople()
         },
     },
 

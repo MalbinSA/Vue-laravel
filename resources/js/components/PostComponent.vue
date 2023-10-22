@@ -1,18 +1,18 @@
 <template>
-    <div>
-        <CreateComponent></CreateComponent>
+    <div class="container mt-3">
+        <create-component></create-component>
         <some-component></some-component>
         <index-component ref="index"></index-component>
     </div>
 </template>
 
 <script>
-import SomeComponent from "./SomeComponent.vue";
 import CreateComponent from "./CreateComponent.vue";
 import IndexComponent from "./IndexComponent.vue";
+import SomeComponent from "./SomeComponent.vue";
 
 export default {
-    name: "PostAndComponent",
+    name: "PostComponent",
 
     data() {
         return {
