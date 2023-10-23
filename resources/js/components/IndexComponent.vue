@@ -13,15 +13,7 @@
             </thead>
             <tbody>
             <template v-for="person in people">
-                <tr :class="idEdit(person.id) ? 'd-none' : ''">
-                    <th scope="row">{{ person.id }}</th>
-                    <td> {{ person.name }}</td>
-                    <td> {{ person.age }}</td>
-                    <td> {{ person.job }}</td>
-                    <td><a href="#" @click.prevent="changeEditPersonId(person.id, person.name, person.age, person.job)"
-                           class="btn btn-success"> Edit </a></td>
-                    <td><a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-danger"> Delete </a></td>
-                </tr>
+                <show-component :person="person" :ref="`show_${person.id}`"></show-component>
                 <edit-component :person="person" :ref="`edit_${person.id}`"></edit-component>
             </template>
             </tbody>
@@ -33,10 +25,11 @@
 <script>
 
 import EditComponent from "./EditComponent.vue";
+import ShowComponent from "./ShowComponent.vue";
 
 export default {
     name: 'IndexComponent',
-    components: {EditComponent},
+    components: {ShowComponent, EditComponent},
 
     data() {
         return {
