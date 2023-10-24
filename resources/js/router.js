@@ -1,9 +1,9 @@
-import {createApp} from 'vue';
 import {createRouter, createWebHistory} from "vue-router";
-import PostComponent from "./components/PostComponent.vue";
 
 const routes = [
-    {path: '/posts', component: PostComponent}
+    {path: '/posts', component: () => import('./components/PostComponent.vue')},
+    {path: '/people', component: () => import('./components/Person/Index.vue'), name: 'person.index'},
+    {path: '/'}
 ];
 
 const router = createRouter({
