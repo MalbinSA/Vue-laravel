@@ -1,5 +1,6 @@
 <template>
-    <div class="container mt-3">
+    <div>
+        This is index component
         <router-view></router-view>
     </div>
 </template>
