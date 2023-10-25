@@ -19,8 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\Person', 'prefix' => 'people'], function () {
-    Route::post('/', 'StoreController@class');
-    Route::get('/', 'IndexController@class');
-    Route::patch('/{person}', 'UpdateController@class');
-    Route::delete('/{person}', 'DeleteController@class');
+    Route::post('/', App\Http\Controllers\Person\StoreController::class);
+    Route::get('/', App\Http\Controllers\Person\IndexController::class);
+    Route::get('/{person}', App\Http\Controllers\Person\ShowController::class);
+    Route::patch('/{person}', App\Http\Controllers\Person\UpdateController::class);
+    Route::delete('/{person}', App\Http\Controllers\Person\DeleteController::class);
 });
