@@ -42,7 +42,7 @@ export default {
 
     methods:{
         getPerson(){
-            axios.get('api/people/' + this.peopleId)
+            axios.get('/api/people/' + this.peopleId)
             .then( res => {
                 console.log(res);
             })
