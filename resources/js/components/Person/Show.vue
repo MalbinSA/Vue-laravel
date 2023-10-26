@@ -1,12 +1,51 @@
 <template>
-    <div>
-        Show
-    </div>
+        <div v-if="this.person">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Job</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td> {{ this.person.id }}</td>
+            <td> {{ this.person.name }}</td>
+            <td> {{ this.person.age }}</td>
+            <td> {{ this.person.job }}</td>
+        </tr>
+        </tbody>
+    </table>
+            <router-link :to="{ name: 'person.edit', params: {id: person.id}}">Edit</router-link>
+        </div>
 </template>
 
 <script>
+import router from "../../router";
+
 export default {
-    name: "Show"
+    name: "Show",
+
+    data() {
+        return {
+            person: null,
+        }
+    },
+
+    mounted() {
+        this.getPerson()
+    },
+
+    methods: {
+        getPerson() {
+            axios.get('/api/people/' + this.$route.params.id)
+                .then(res => {
+                    this.person = res.data
+                })
+        }
+    },
 }
 </script>
 

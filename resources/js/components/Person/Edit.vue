@@ -11,12 +11,14 @@
                 <input type="text" v-model="job" placeholder="job" class="form-control">
             </div>
             <div class="mb-2">
-                <input type="submit"  value="Add" class="btn btn-primary">
+                <input type="submit" @click.prevent="updatePerson"  value="Add" class="btn btn-primary">
             </div>
         </div>
     </div>
 </template>
 <script>
+
+import router from "../../router";
 
 export default {
     name: "Edit",
@@ -44,7 +46,17 @@ export default {
         getPerson(){
             axios.get('/api/people/' + this.peopleId)
             .then( res => {
-                console.log(res);
+                this.name = res.data.name
+                this.age = res.data.age
+                this.job = res.data.job
+            })
+        },
+
+        updatePerson(){
+              axios.patch('/api/people/' + this.$route.params.id,
+                  { name: this.name, age: this.age, job: this.job})
+            .then(res => {
+                router.push({name: 'person.show'})
             })
         }
 
