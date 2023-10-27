@@ -18,8 +18,6 @@
 </template>
 <script>
 
-import router from "../../router";
-
 export default {
     name: "Edit",
 
@@ -44,19 +42,19 @@ export default {
 
     methods:{
         getPerson(){
-            axios.get('/api/people/' + this.peopleId)
+            axios.get(`/api/people/${this.peopleId}`)
             .then( res => {
-                this.name = res.data.name
-                this.age = res.data.age
-                this.job = res.data.job
+                this.name = res.data.data.name
+                this.age = res.data.data.age
+                this.job = res.data.data.job
             })
         },
 
         updatePerson(){
-              axios.patch('/api/people/' + this.$route.params.id,
+              axios.patch(`/api/people/${this.$route.params.id}`,
                   { name: this.name, age: this.age, job: this.job})
             .then(res => {
-                router.push({name: 'person.show'})
+                this.$router.push({name: 'person.show'})
             })
         }
 

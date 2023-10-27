@@ -33,7 +33,6 @@
 
 <script>
 
-import router from "../../router";
 
 export default {
     name: "Index",
@@ -52,13 +51,12 @@ export default {
         getPersons() {
             axios.get('./api/people')
                 .then(res => {
-                    this.persons = res.data
-                    // console.log(res);
+                    this.persons = res.data.data
                 });
         },
 
         deletePerson(id) {
-            axios.delete('/api/people/' + id)
+            axios.delete(`/api/people/${id}`)
             .then( res => {
                 this.getPersons()
             })
