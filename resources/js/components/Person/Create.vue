@@ -11,7 +11,7 @@
                 <input type="text" v-model="job" placeholder="job" class="form-control">
             </div>
             <div class="mb-2">
-                <input type="submit" :disabled="!isDisabled" @click.prevent="store" value="Add" class="btn btn-primary">
+                <input type="submit" :disabled="!isDisabled" @click.prevent="$store.dispatch('store', {name, age, job})" value="Add" class="btn btn-primary">
             </div>
         </div>
     </div>
@@ -27,15 +27,6 @@ export default {
             name: null,
             age: null,
             job: null,
-        }
-    },
-
-    methods:{
-        store() {
-            axios.post('/api/people', { name: this.name, age: this.age, job: this.job})
-            .then( res => {
-                this.$router.push({name: 'person.index'});
-            })
         }
     },
 
